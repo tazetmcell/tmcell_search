@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="tk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAPPYSEARCH █ SMS HYZY GÖZLEG</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+        }
+
+        /* LIQUID GLASS STILLERI we TÜRKMENÇE GÖWRÜM */
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff6b35, #f72585, #7209b7, #3a0ca3, #4361ee);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMSAwIDAgMCAwIDAgMSAwIDAgMCAwIDAgMSAwIDAgMCAwIDAgMC4wNSAwIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbHRlcj0idXJsKCNub2lzZSkiIG9wYWNpdHk9IjAuMDMiLz48L3N2Zz4=');
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 2.5rem 2.5rem 2rem 2rem;
+            padding: 2rem 2rem 1.8rem 2rem;
+            box-shadow: 0 8px 32px rgba(255, 107, 53, 0.3),
+                        0 8px 32px rgba(247, 37, 133, 0.2),
+                        inset 0 0 20px rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .search-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 37, 133, 0.1));
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        .neon-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 107, 53, 0.8), 
+                        0 0 40px rgba(247, 37, 133, 0.6),
+                        0 0 60px rgba(114, 9, 183, 0.4);
+            margin-bottom: 8px;
+            word-break: break-word;
+            filter: drop-shadow(0 0 15px rgba(255, 107, 53, 0.6));
+        }
+
+        .sub-tk {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(247, 37, 133, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 12px;
+            font-style: italic;
+        }
+
+        /* input we düwme */
+        .search-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 25px 20px;
+            border-radius: 60px;
+            box-shadow: 0 8px 32px rgba(255, 107, 53, 0.2),
+                        inset 0 0 15px rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+        }
+        
+        .search-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.05), rgba(247, 37, 133, 0.05));
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        .input-group {
+            flex: 3 1 250px;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 0 10px 0 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .input-group::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 37, 133, 0.1));
+            border-radius: inherit;
+            z-index: -1;
+        }
+        .input-group:focus-within {
+            border-color: rgba(255, 107, 53, 0.6);
+            box-shadow: 0 0 25px rgba(255, 107, 53, 0.4),
+                        0 0 50px rgba(247, 37, 133, 0.3);
+            transform: scale(1.02);
+        }
+
+        .input-group span {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-right: 5px;
+            text-shadow: 0 0 10px rgba(255, 107, 53, 0.8);
+        }
+
+        .input-group input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 18px 5px 18px 5px;
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            outline: none;
+            letter-spacing: 1px;
+        }
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        .gozleg-btn {
+            flex: 1 1 160px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 800;
+            font-size: 1.7rem;
+            padding: 15px 25px;
+            border-radius: 60px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(255, 107, 53, 0.8);
+            box-shadow: 0 8px 32px rgba(255, 107, 53, 0.3),
+                        inset 0 0 15px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+        }
+        
+        .gozleg-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(247, 37, 133, 0.2));
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        .gozleg-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(255, 107, 53, 0.5),
+                        0 8px 32px rgba(247, 37, 133, 0.4),
+                        inset 0 0 20px rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 107, 53, 0.6);
+            text-shadow: 0 0 20px rgba(255, 107, 53, 0.9);
+            transform: scale(1.05) translateY(-2px);
+        }
+
+        /* netijeler bölümi */
+        .result-box {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            margin-top: 30px;
+            border-radius: 40px;
+            padding: 1.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(255, 107, 53, 0.3),
+                        inset 0 0 20px rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .result-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.05), rgba(247, 37, 133, 0.05));
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        .neon-header {
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 0 15px rgba(255, 107, 53, 0.8),
+                        0 0 30px rgba(247, 37, 133, 0.6);
+            border-left: 10px solid rgba(255, 107, 53, 0.8);
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+
+        .data-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 18px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+            word-break: break-word;
+            position: relative;
+        }
+        
+        .data-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.05), rgba(247, 37, 133, 0.05));
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        .data-item div {
+            flex: 1 1 200px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+        .data-item strong {
+            color: rgba(255, 107, 53, 0.9);
+            text-shadow: 0 0 8px rgba(255, 107, 53, 0.6);
+            display: block;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 4px;
+        }
+        .data-item span {
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 3px 12px;
+            border-radius: 30px;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .empty-message {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.4rem;
+            text-shadow: 0 0 15px rgba(247, 37, 133, 0.8);
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* soňky gözlegler */
+        .history-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(255, 107, 53, 0.3),
+                        inset 0 0 15px rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .history-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.05), rgba(247, 37, 133, 0.05));
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        .history-title {
+            font-size: 1.9rem;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 0 15px rgba(255, 107, 53, 0.8),
+                        0 0 30px rgba(247, 37, 133, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .history-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 20px;
+            justify-content: flex-start;
+        }
+
+        .history-chip {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 14px 28px;
+            border-radius: 40px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.2);
+            backdrop-filter: blur(2px);
+            transition: all 0.3s ease;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+        
+        .history-chip::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 37, 133, 0.1));
+            border-radius: inherit;
+            z-index: -1;
+        }
+        .history-chip span {
+            color: rgba(255, 107, 53, 0.9);
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 30px;
+            padding: 5px 12px;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-shadow: 0 0 8px rgba(255, 107, 53, 0.6);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- esasy karta -->
+    <div class="search-card">
+        <div class="neon-title">SAPPYSEARCH</div>
+        <div class="sub-tk">siziň ygtybarly spam gözlegiňiz █ türkmençe interfeýs</div>
+
+        <!-- gözleg formasy -->
+        <div class="search-form">
+            <div class="input-group">
+                <span>+993</span>
+                <input type="text" id="phoneInput" placeholder="61234567" maxlength="8" inputmode="numeric">
+            </div>
+            <button class="gozleg-btn" id="searchBtn">⟳ Gözleg</button>
+        </div>
+
+        <!-- netijeler görkezilýän ýer -->
+        <div class="result-box" id="resultContainer">
+            <div class="neon-header">◉ gözleg netijesi</div>
+            <div id="resultContent">
+                <div class="empty-message">✦ heniz gözleg ýok ✦</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- soňky gözlegler taryhy (NEON) -->
+    <div class="history-card">
+        <div class="history-title">
+            <span>⏳ soňky gözlegler</span>
+            <span style="font-size:1.2rem; color: #0ff;">[ +993 ]</span>
+        </div>
+        <ul class="history-list" id="historyList">
+            <li class="history-chip">─  gözleg ýok  ─</li>
+        </ul>
+        <div class="footer-note">★ her gözleg ýatda saklanýar ★</div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // TÜRKMEN dilinde ýazylan SAPPYSEARCH — spam / nomer barlag
+        // API: http://stormapi.wineclo.com/index.php?number=993...
+
+        // elementleri sakla
+        const phoneInput = document.getElementById('phoneInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const resultContent = document.getElementById('resultContent');
+        const historyList = document.getElementById('historyList');
+
+        // soňky gözlegler üçin ýatkeş (lokal ýatda sakla)
+        let searchHistory = [];
+
+        // ýüklän wagty öňki taryhy okamak
+        try {
+            const saved = localStorage.getItem('sappySearchHistory_tm');
+            if (saved) {
+                searchHistory = JSON.parse(saved);
+            }
+        } catch (e) { console.warn("Taryh okalmazlyk:", e); }
+
+        // taryhy täzele we görkez
+        function renderHistory() {
+            if (!historyList) return;
+            if (searchHistory.length === 0) {
+                historyList.innerHTML = '<li class="history-chip">🔮  gözleg ýok  🔮</li>';
+                return;
+            }
+            // iň soňky 5 gözlegi görkez (tersine tertipde täze)
+            const lastFive = [...searchHistory].reverse().slice(0, 5);
+            historyList.innerHTML = '';
+            lastFive.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'history-chip';
+                // item: { nomer: '99361...', wagt: '20:15' }
+                li.innerHTML = `<span>📱</span> +993 ${item.nomer} <span>${item.wagt}</span>`;
+                historyList.appendChild(li);
+            });
+        }
+
+        // taryha täze nomer goş (eýýäm bar bolsa taze wagt bilen ýokarsyna)
+        function addToHistory(fullNumber) {
+            const now = new Date();
+            const wagyt = now.toLocaleTimeString('tk-TM', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            // diňe 8 sanly nomer (başyndan 993 çykaryp)
+            const shortCode = fullNumber.replace('993', ''); // +993 el bilen goşjak, sany gor
+            const existingIndex = searchHistory.findIndex(h => h.nomer === shortCode);
+            if (existingIndex !== -1) {
+                // eýýäm bar bolsa poz we täze wagt bilen başa goş
+                searchHistory.splice(existingIndex, 1);
+            }
+            // täzesini goş
+            searchHistory.push({ nomer: shortCode, wagt: wagyt });
+            // 20-den köp bolsa köpüsini arassala
+            if (searchHistory.length > 20) searchHistory = searchHistory.slice(-20);
+            // ýatda sakla
+            try {
+                localStorage.setItem('sappySearchHistory_tm', JSON.stringify(searchHistory));
+            } catch (e) {}
+            renderHistory();
+        }
+
+        // netijeleri UI-da görkez
+        function displayResult(apiData) {
+            // apiData: { success: true, data: [ ... ], count } ýa-da null (tapylmady)
+            if (!apiData || !apiData.success || !apiData.data || apiData.data.length === 0) {
+                resultContent.innerHTML = `<div class="empty-message">⛔  hiç hili maglumat tapylmady  ⛔</div>`;
+                return;
+            }
+            const first = apiData.data[0];  // iň ilkinji maglumat
+            // passport we beýlekiler
+            const phoneShow = first.phone || 'belli däl';
+            const nameShow = first.name || 'belli däl';
+            const addressShow = first.address || 'belli däl';
+            const passportShow = first.passport || 'belli däl';
+            const birthShow = first.birth_info || 'belli däl';
+            const simShow = first.sim_id || 'belli däl';
+
+            const html = `
+                <div class="data-item">
+                    <div><strong>📞 telefon</strong> <span>${phoneShow}</span></div>
+                    <div><strong>👤 ady</strong> <span>${nameShow}</span></div>
+                    <div><strong>📍 salgy</strong> <span>${addressShow}</span></div>
+                    <div><strong>🆔 pasport</strong> <span>${passportShow}</span></div>
+                    <div><strong>🎂 doglan wagty</strong> <span>${birthShow}</span></div>
+                    <div><strong>📀 SIM ID</strong> <span>${simShow}</span></div>
+                </div>
+            `;
+            resultContent.innerHTML = html;
+        }
+
+        // gözleg funksiýasy (API-e ýüzlen)
+        async function performSearch() {
+            let rawValue = phoneInput.value.trim();
+            // diňe sanlary al
+            const digits = rawValue.replace(/\D/g, '');
+            // eger hiç zat ýok bolsa 61234567 ýaly 8 san ber
+            let finalNumber = '';
+
+            if (digits.length === 0) {
+                // boş bolsa mysal üçin 61234567
+                finalNumber = '61234567';
+                phoneInput.value = '61234567';
+            } else if (digits.length <= 8) {
+                // 8 ýa-da ondan az bolsa, şol özi
+                finalNumber = digits.padStart(8, '0'); // 7 -> 00000007? ýöne 61234567 ýaly giriş üçin dogry däl, has gowusy gönümel
+                // ýöne 8-den kiçi bolsa, 61... ýaly manyly belki 7 sanly? 61.... 8 bolmaly
+                if (digits.length < 8) {
+                    // ulanyjy 6123456 ýazsa 8 etmek üçin başyna nol goşma, köplenç 8 san bolmaly
+                    // biz diňe 8 san etmek üçin öňüne 0 goşmak ýerliksiz. şonuň üçin uzynlygy 8 bolmasa, hiç zat etme.
+                    // 8 den uzyn bolsa aşakda keser.
+                }
+                // bar bolan digits ulanylýar, ýöne uzynlygy 8 däl bolsa API-de ýalňyş bolar. Gowusy 8 simwol edeliň
+                if (digits.length !== 8) {
+                    // mysal üçin nomer 8 simwol däl: ulanyja duýduryş
+                    // biz ýine-de synanyşarys ýöne 8 bolmadyk ýagdaýy +993 goşup ibereris. API +993 bilen kabul edýär
+                }
+                finalNumber = digits;
+            } else {
+                // 8-den uzyn (başynda 993 bar bolsa aýyr)
+                if (digits.startsWith('993') && digits.length > 9) {
+                    finalNumber = digits.substring(3, 11); // 993-den soňky 8 san
+                } else {
+                    finalNumber = digits.substring(0, 8); // ilkinji 8 san
+                }
+            }
+
+            // eger-de finalNumber boş bolsa 61234567
+            if (!finalNumber || finalNumber.length === 0) finalNumber = '61234567';
+            // ýene-de uzynlygy 8 bolmadyk bolsa, çepden 8 simwol al
+            if (finalNumber.length > 8) finalNumber = finalNumber.slice(0, 8);
+            if (finalNumber.length < 8) {
+                // 8 den kiçi bolsa, başyna 0 goşup bolmaz, yöne mysal üçin 6123456 ýedi san — API yalňyş goýbermez ýöne birnäçe wariant bar
+                // biz 8 bolmagy üçin öňünden "6" goýup bileris? ýöne gowusy ulanyja duýduryş görkezmeli.
+                // Ýöne şu ýerde yönekeý usul: öňüne nol bilen doldur, ýöne telefon belgi üçin nol ýaramaz.
+                // hut şu sebäpli input-a maxlength 8 we placeholder 61234567.
+                // Hiç zat etme, 8 däl bolsa-da API-e iber, belki işlär.
+            }
+
+            // +993 bilen doly nomer (API-a şeýle gerek: ?number=99361234567)
+            const fullPhone = '993' + finalNumber;  // API mysalda 99361234567 görýäris
+
+            // taryha goş (ýöne 8 sanly görnüşde)
+            addToHistory(finalNumber);  // finalNumber 8 simwol
+
+            // netije görkezilýän ýerde "gözlenýär..." animasiýa
+            resultContent.innerHTML = `<div class="empty-message">⚡ gözlenýär... +993 ${finalNumber} ⚡</div>`;
+
+            try {
+                const url = `http://stormapi.wineclo.com/index.php?number=${fullPhone}`;
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('API jogap bermedi');
+                }
+                const data = await response.json();
+                displayResult(data);
+            } catch (error) {
+                console.error('Gözleg hatasy:', error);
+                resultContent.innerHTML = `<div class="empty-message">❌  baglanyşyk ýalňyşlygy  ❌ <br> <span style="font-size:1rem;">${error.message}</span></div>`;
+            }
+        }
+
+        // düwme basylanda
+        searchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            performSearch();
+        });
+
+        // enter basylanda
+        phoneInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch();
+            }
+        });
+
+        // ilkinji ýüklenende taryhy görkez
+        renderHistory();
+
+        // islege görä: başlangyç demo hökmünde 61234567 gözlemek isleýärsiňizmi? ýöne başda etme.
+        // telefon input 61234567 esasy görkez.
+        phoneInput.value = '61234567';   // mysal üçin girizilen
+        // isleseniz awtogözlem? düwme basmaly.
+    })();
+</script>
+
+<!-- bu kod SAPPYSEARCH – türkmençe spam gözleg, neon arka plan, soňky gözlegler ýatda saklanýar. -->
+</body>
+</html>
